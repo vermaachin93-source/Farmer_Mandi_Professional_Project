@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Mandi | Smart Agriculture Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="authView" class="auth-shell">
+    <div class="auth-brand">
+      <div class="brand-mark"><i class="fa-solid fa-wheat-awn"></i></div>
+      <div><h1>Farmer<span>Mandi</span></h1><p>Smart farming. Better markets.</p></div>
+    </div>
+    <div class="auth-card">
+      <div class="auth-intro">
+        <span class="eyebrow">WELCOME TO FARMER MANDI</span>
+        <h2 id="authTitle">Create your farmer account</h2>
+        <p id="authSubtitle">Manage crops, explore mandi prices and connect with buyers.</p>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="showRegister">Register</button>
+        <button class="auth-tab" id="showLogin">Login</button>
+      </div>
+      <form id="registerForm" class="auth-form">
+        <label>Full name<input id="regName" required placeholder="Enter your name"></label>
+        <div class="form-grid">
+          <label>Mobile number<input id="regMobile" required inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit mobile"></label>
+          <label>Village / City<input id="regVillage" required placeholder="Your village"></label>
+        </div>
+        <label>Username<input id="regUsername" required minlength="3" placeholder="Create username"></label>
+        <div class="form-grid">
+          <label>Password<input id="regPassword" type="password" required minlength="6" placeholder="At least 6 characters"></label>
+          <label>Confirm password<input id="regConfirm" type="password" required minlength="6" placeholder="Repeat password"></label>
+        </div>
+        <label class="check-line"><input type="checkbox" required> I agree to use this demonstration platform responsibly.</label>
+        <button class="btn btn-primary full" type="submit">Create account <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="form-note">Demo project: account details are stored in this browser only.</p>
+      </form>
+      <form id="loginForm" class="auth-form hidden">
+        <label>Username<input id="loginUsername" required placeholder="Your username"></label>
+        <label>Password<input id="loginPassword" type="password" required placeholder="Your password"></label>
+        <button class="btn btn-primary full" type="submit">Login to dashboard <i class="fa-solid fa-arrow-right"></i></button>
+        <p class="form-note">Register first if you are using this project for the first time.</p>
+      </form>
+      <p id="authMessage" class="message" role="status"></p>
+    </div>
+    <p class="auth-foot">A college mini project • HTML, CSS & JavaScript</p>
+  </div>
+
+  <div id="appView" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand"><div class="brand-mark"><i class="fa-solid fa-wheat-awn"></i></div><div><b>Farmer<span>Mandi</span></b><small>SMART AGRICULTURE</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-menu">
+        <button class="nav-link active" data-page="dashboard"><i class="fa-solid fa-grid-2"></i> Dashboard</button>
+        <button class="nav-link" data-page="crops"><i class="fa-solid fa-seedling"></i> My Crops</button>
+        <button class="nav-link" data-page="market"><i class="fa-solid fa-chart-line"></i> Mandi Prices</button>
+        <button class="nav-link" data-page="buyers"><i class="fa-solid fa-handshake"></i> Buyer Connect</button>
+        <button class="nav-link" data-page="transactions"><i class="fa-solid fa-receipt"></i> Transactions</button>
+        <button class="nav-link" data-page="bank"><i class="fa-solid fa-building-columns"></i> Bank Details</button>
+        <button class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i> Profile Settings</button>
+      </nav>
+      <div class="side-help"><div class="help-icon"><i class="fa-solid fa-headset"></i></div><b>Need help?</b><p>This is a mini-project demo. Use sample data for presentation.</p></div>
+      <button id="logoutBtn" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Log out</button>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <div><div class="top-kicker">FARMER WORKSPACE</div><div class="top-date" id="todayDate"></div></div>
+        <div class="top-user"><div class="notification-dot"><i class="fa-regular fa-bell"></i><span></span></div><div class="avatar" id="userAvatar">F</div><div class="user-meta"><b id="topUserName">Farmer</b><small id="topUserVillage">Your village</small></div></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-row"><div><span class="eyebrow">YOUR AGRICULTURE OVERVIEW</span><h1>Good day, <span id="welcomeName">Farmer</span> <span class="wave">🌱</span></h1><p>Here is what's happening on your farm today.</p></div><button class="btn btn-primary" data-go="crops"><i class="fa-solid fa-plus"></i> Add new crop</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-seedling"></i></div><span>Total crop listings</span><strong id="statCrops">0</strong><small>Available in your farm</small></article>
+          <article class="stat-card"><div class="stat-icon amber"><i class="fa-solid fa-scale-balanced"></i></div><span>Quantity available</span><strong id="statQuantity">0 kg</strong><small>Across all crop listings</small></article>
+          <article class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-indian-rupee-sign"></i></div><span>Total sales</span><strong id="statSales">₹0</strong><small>Recorded completed sales</small></article>
+          <article class="stat-card"><div class="stat-icon purple"><i class="fa-solid fa-wallet"></i></div><span>Demo wallet balance</span><strong id="statBalance">₹0</strong><small>Local demo calculation</small></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel wide-panel"><div class="panel-head"><div><h3>Market price snapshot</h3><p>Illustrative sample prices per quintal</p></div><button class="text-btn" data-go="market">View all <i class="fa-solid fa-arrow-right"></i></button></div><div class="market-mini" id="dashboardMarket"></div></article>
+          <article class="panel"><div class="panel-head"><div><h3>Quick actions</h3><p>Manage your farm faster</p></div></div><div class="quick-actions"><button data-go="crops"><i class="fa-solid fa-plus"></i><span>Add crop</span><i class="fa-solid fa-chevron-right"></i></button><button data-go="buyers"><i class="fa-solid fa-store"></i><span>Find buyers</span><i class="fa-solid fa-chevron-right"></i></button><button data-go="transactions"><i class="fa-solid fa-file-invoice"></i><span>View sales</span><i class="fa-solid fa-chevron-right"></i></button></div></article>
+        </div>
+        <div class="content-grid lower-grid">
+          <article class="panel wide-panel"><div class="panel-head"><div><h3>Recent transactions</h3><p>Your latest crop sales</p></div><button class="text-btn" data-go="transactions">See history</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Crop</th><th>Quantity</th><th>Amount</th><th>Status</th></tr></thead><tbody id="recentTransactions"></tbody></table></div></article>
+          <article class="panel tip-panel"><div class="tip-art">🌾</div><span class="eyebrow">FARMER TIP</span><h3>Compare before you sell</h3><p>Check prices from more than one mandi and consider transport costs before making a selling decision.</p><button class="text-btn" data-go="market">Explore mandi prices <i class="fa-solid fa-arrow-right"></i></button></article>
+        </div>
+        <p class="disclaimer">Demo notice: prices, wallet balance, buyer enquiries and market trends in this project are sample data, not live market or financial information.</p>
+      </section>
+
+      <section class="page" id="page-crops">
+        <div class="page-heading"><div><span class="eyebrow">FARM INVENTORY</span><h1>My Crops</h1><p>Add and manage the crops available on your farm.</p></div></div>
+        <div class="content-grid crop-layout">
+          <article class="panel form-panel"><div class="panel-head"><div><h3 id="cropFormTitle">Add a crop</h3><p>Enter crop details below</p></div><span class="panel-icon"><i class="fa-solid fa-seedling"></i></span></div>
+            <form id="cropForm" class="stack-form">
+              <input type="hidden" id="editCropId">
+              <label>Crop name<input id="cropName" required placeholder="e.g. Wheat"></label>
+              <div class="form-grid"><label>Quantity (kg)<input id="cropQty" type="number" min="1" required placeholder="e.g. 500"></label><label>Expected price (₹/kg)<input id="cropPrice" type="number" min="0.1" step="0.1" required placeholder="e.g. 25"></label></div>
+              <label>Harvest date<input id="harvestDate" type="date"></label>
+              <label>Quality<select id="cropQuality"><option>Standard</option><option>Good</option><option>Premium</option></select></label>
+              <div class="form-actions"><button class="btn btn-primary" type="submit"><i class="fa-solid fa-check"></i> Save crop</button><button class="btn btn-light" type="reset" id="cancelCropEdit">Clear</button></div>
+            </form>
+          </article>
+          <article class="panel"><div class="panel-head"><div><h3>Inventory summary</h3><p>Your crop availability</p></div></div><div class="inventory-summary"><div><span>Crop varieties</span><b id="inventoryVarieties">0</b></div><div><span>Total quantity</span><b id="inventoryQuantity">0 kg</b></div><div><span>Available listings</span><b id="inventoryAvailable">0</b></div></div><div class="soft-note"><i class="fa-solid fa-circle-info"></i> Keep quantity and expected price updated to make buyer enquiries more useful.</div></article>
+        </div>
+        <article class="panel table-panel"><div class="panel-head"><div><h3>Crop inventory</h3><p>All crops added to your account</p></div><input class="table-search" id="cropSearch" placeholder="Search crops..."></div><div class="table-wrap"><table><thead><tr><th>Crop</th><th>Quantity</th><th>Expected price</th><th>Harvest date</th><th>Quality</th><th>Status</th><th>Actions</th></tr></thead><tbody id="cropRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-market">
+        <div class="page-heading"><div><span class="eyebrow">MARKET INTELLIGENCE</span><h1>Mandi Prices</h1><p>Compare illustrative crop prices before planning a sale.</p></div><div class="sample-tag"><i class="fa-solid fa-circle-info"></i> Sample dataset</div></div>
+        <article class="panel"><div class="panel-head"><div><h3>Market rate board</h3><p>Sample indicative rates per quintal (100 kg)</p></div><input class="table-search" id="marketSearch" placeholder="Search crop..."></div><div class="table-wrap"><table><thead><tr><th>Crop</th><th>Sample price / quintal</th><th>Trend</th><th>Indicative note</th></tr></thead><tbody id="marketRows"></tbody></table></div></article>
+        <article class="panel estimator-panel"><div class="panel-head"><div><h3>Crop value estimator</h3><p>Estimate gross value using the sample rate table</p></div><span class="panel-icon"><i class="fa-solid fa-calculator"></i></span></div><div class="estimator-fields"><label>Select crop<select id="estimateCrop"></select></label><label>Quantity (quintal)<input type="number" id="estimateQty" min="0.1" step="0.1" value="1"></label><div class="estimate-result"><small>Estimated gross value</small><strong id="estimateResult">₹0</strong></div></div><p class="form-note">This is a simple calculator, not an AI prediction or guaranteed selling price. Actual rates vary by mandi, quality and date.</p></article>
+      </section>
+
+      <section class="page" id="page-buyers">
+        <div class="page-heading"><div><span class="eyebrow">SELL SMARTER</span><h1>Buyer Connect</h1><p>Publish a crop listing and review sample buyer enquiries.</p></div></div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><div><h3>Create a buyer listing</h3><p>Share the crop you want to sell</p></div></div><form id="buyerForm" class="stack-form"><label>Select available crop<select id="buyerCrop" required></select></label><label>Quantity to offer (kg)<input id="buyerQty" type="number" min="1" required placeholder="Quantity"></label><label>Preferred contact time<select id="buyerTime"><option>Any time</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label><button class="btn btn-primary" type="submit">Publish listing <i class="fa-solid fa-arrow-right"></i></button></form></article>
+          <article class="panel"><div class="panel-head"><div><h3>How buyer connect works</h3><p>Simple demonstration workflow</p></div></div><div class="steps"><div><b>01</b><span><strong>Add crop details</strong><small>Select crop and quantity.</small></span></div><div><b>02</b><span><strong>Publish listing</strong><small>Your listing appears in this dashboard.</small></span></div><div><b>03</b><span><strong>Review enquiry</strong><small>Demo enquiries help illustrate the process.</small></span></div></div></article>
+        </div>
+        <article class="panel table-panel"><div class="panel-head"><div><h3>Your published listings</h3><p>Local browser demo listings</p></div></div><div class="table-wrap"><table><thead><tr><th>Crop</th><th>Quantity</th><th>Preferred time</th><th>Published</th><th>Status</th><th>Action</th></tr></thead><tbody id="buyerRows"></tbody></table></div></article>
+        <article class="panel"><div class="panel-head"><div><h3>Sample buyer enquiries</h3><p>Illustrative enquiries for presentation only</p></div></div><div class="enquiry-list"><div class="enquiry"><div class="buyer-avatar">RK</div><div><b>R.K. Grain Traders</b><small>Interested in wheat • Sample enquiry</small></div><span class="status-pill pending">Review demo</span></div><div class="enquiry"><div class="buyer-avatar orange">AS</div><div><b>Agro Supply Co.</b><small>Interested in rice • Sample enquiry</small></div><span class="status-pill pending">Review demo</span></div></div></article>
+      </section>
+
+      <section class="page" id="page-transactions">
+        <div class="page-heading"><div><span class="eyebrow">SALES RECORD</span><h1>Transactions</h1><p>Review crop sales recorded in this browser.</p></div></div>
+        <div class="stats-grid two-stats"><article class="stat-card"><div class="stat-icon green"><i class="fa-solid fa-indian-rupee-sign"></i></div><span>Total recorded sales</span><strong id="transactionTotal">₹0</strong><small>Demo sales only</small></article><article class="stat-card"><div class="stat-icon blue"><i class="fa-solid fa-receipt"></i></div><span>Completed transactions</span><strong id="transactionCount">0</strong><small>Sales entries</small></article></div>
+        <article class="panel table-panel"><div class="panel-head"><div><h3>Transaction history</h3><p>Sales are created when you use the Sell action in My Crops.</p></div></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Crop</th><th>Quantity</th><th>Rate / kg</th><th>Amount</th><th>Status</th></tr></thead><tbody id="transactionRows"></tbody></table></div></article>
+      </section>
+
+      <section class="page" id="page-bank">
+        <div class="page-heading"><div><span class="eyebrow">PAYMENT PROFILE</span><h1>Bank Details</h1><p>Save demo bank details locally for your project walkthrough.</p></div></div>
+        <article class="panel bank-panel"><div class="bank-illustration"><i class="fa-solid fa-building-columns"></i><h3>Farmer payment profile</h3><p>Keep your account information organised.</p></div><form id="bankForm" class="stack-form bank-form"><label>Account holder name<input id="bankHolder" required placeholder="Name as per bank account"></label><div class="form-grid"><label>Bank name<input id="bankName" required placeholder="Bank name"></label><label>Branch<input id="bankBranch" placeholder="Branch name"></label></div><label>Account number<input id="bankAccount" required inputmode="numeric" placeholder="Enter account number"></label><label>IFSC code<input id="bankIfsc" required maxlength="11" placeholder="e.g. ABCD0123456"></label><button class="btn btn-primary" type="submit">Save bank details <i class="fa-solid fa-check"></i></button><p class="form-note">For demonstration only: do not enter real bank details. This frontend has no secure banking connection.</p></form></article>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-heading"><div><span class="eyebrow">ACCOUNT</span><h1>Profile Settings</h1><p>Update your farmer profile information.</p></div></div>
+        <article class="panel settings-panel"><div class="profile-badge"><div class="avatar large" id="settingsAvatar">F</div><div><h3 id="settingsDisplayName">Farmer</h3><p>Farmer account</p></div></div><form id="settingsForm" class="stack-form"><label>Full name<input id="settingsName" required></label><div class="form-grid"><label>Mobile number<input id="settingsMobile" required maxlength="10" pattern="[0-9]{10}"></label><label>Village / City<input id="settingsVillage" required></label></div><button class="btn btn-primary" type="submit">Save profile changes</button></form><div class="danger-zone"><div><b>Reset demo data</b><p>Remove this account's locally saved crops, listings and transactions.</p></div><button id="resetDataBtn" class="btn btn-danger">Reset data</button></div></article>
+      </section>
+      <footer class="app-footer">Farmer Mandi • College Mini Project • Built with HTML, CSS & JavaScript</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
